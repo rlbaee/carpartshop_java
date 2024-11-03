@@ -11,7 +11,7 @@ public class ShopApp {
 
     public ShopApp(Scanner scanner) {
         this.scanner = scanner;
-        productService = new ProductService();
+        productService = new ProductService("products.txt");
         customerService = new CustomerService();
         purchaseService = new PurchaseService();
     }

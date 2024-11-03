@@ -7,9 +7,10 @@ import java.util.Scanner;
 
 public class ProductService {
     private final List<Product> products;
-    private static final String PRODUCT_FILE = "products.dat";
+    private final String productFile;
 
-    public ProductService() {
+    public ProductService(String productFile) {
+        this.productFile = productFile;
         products = loadProducts();
     }
 
@@ -38,14 +39,14 @@ public class ProductService {
     }
 
     public void saveProducts() throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PRODUCT_FILE))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(productFile))) {
             oos.writeObject(products);
         }
     }
 
     @SuppressWarnings("unchecked")
     private List<Product> loadProducts() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PRODUCT_FILE))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(productFile))) {
             return (List<Product>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             return new ArrayList<>();

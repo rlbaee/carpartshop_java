@@ -49,4 +49,9 @@ public class PurchaseService {
             return new ArrayList<>();
         }
     }
+
+    // New method to get the list of purchases
+    public List<PurchasedProduct> getPurchases() {
+        return purchases;
+    }
 }
